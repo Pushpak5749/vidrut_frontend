@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Hanken+Grotesk:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#00daf3",
+                    "on-surface": "#dce4e5",
+                    "surface-dim": "#0d1516",
+                    "background": "#0d1516",
+                    "on-primary": "#00363d",
+                    "surface": "#0d1516",
+                    "on-surface-variant": "#bac9cc",
+                    "primary-fixed": "#9cf0ff",
+                    "surface-variant": "#2e3638",
+                    "surface-container": "#192122",
+                    "surface-container-highest": "#2e3638",
+                    "surface-container-lowest": "#080f11",
+                    "surface-container-high": "#242b2d",
+                    "surface-container-low": "#151d1e",
+                    "on-background": "#dce4e5",
+                    "outline-variant": "#3b494c",
+                    "error": "#ffb4ab"
+            },
+            "fontFamily": {
+                    "label-sm": ["JetBrains Mono"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "label-md": ["JetBrains Mono"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(13, 21, 22, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.05);
+        }
+        .command-glow {
+            box-shadow: inset 0 0 10px rgba(0, 218, 243, 0.3), 0 0 20px rgba(0, 218, 243, 0.2);
+        }
+        .tab-btn.active {
+            border-bottom: 2px solid #00daf3;
+            color: #00daf3;
+            text-shadow: 0 0 8px rgba(0, 218, 243, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary-container selection:text-on-primary-container font-body-md overflow-x-hidden min-h-screen flex flex-col">
+
+<!-- Top Navigation Bar -->
+<header class="bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_0_20px_rgba(0,218,243,0.1)] w-full top-0 sticky z-50">
+<nav class="flex justify-between items-center w-full px-8 py-4 max-w-[1280px] mx-auto">
+<div class="font-headline-md text-2xl font-bold text-primary-fixed-dim tracking-tighter">
+                Vidrut Courses
+            </div>
+<!-- Desktop Links -->
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-sm" href="/">Dashboard</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-sm" href="/about.html">About Us</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-sm" href="/catalog">Courses</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-sm" href="/verify.html">Certificates</a>
+</div>
+</nav>
+</header>
+
+<!-- Main Login Section -->
+<main class="flex-grow flex items-center justify-center relative overflow-hidden px-4 py-12">
+    <!-- Background image and overlay -->
+    <div class="absolute inset-0 z-0">
+        <img class="w-full h-full object-cover opacity-30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbvAucqnkJHFsoYPB1EvmaBsld8nM7VEz3GiSrK831xn_VcCTvp0W47MWi9HNKntpv25YqdUkW97N04BsiidR70vecOhkCO-6Fq-lfvHrKec1cApicjzqnyWtmnw09vInP1YgL5t2J3O4WmeHCTwbBWIedXJuZcUvQ-GJTtAIjl9DG8MRdudvDdoc2lFyLaGD2aXs1kOwU9O3ztw9V_CrVIPs1QmGpvPnfO_TdRJqaVJtXBgciTCEuqtv3c4fR6L9Zv4UZkntG2J5B"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent"></div>
+    </div>
+    
+    <div class="relative z-10 w-full max-w-md glass-panel p-8 rounded-2xl">
+        <div class="text-center mb-8">
+            <h1 class="font-headline-lg text-3xl text-on-surface mb-2 tracking-wide">SYSTEM ACCESS</h1>
+            <p class="font-body-md text-on-surface-variant">Authenticate to access the command center</p>
+        </div>
+
+        <% if (error) { %>
+            <div class="mb-4 p-3 bg-red-900/50 border border-error text-error text-sm rounded text-center">
+                <%= error %>
+            </div>
+        <% } %>
+
+        <!-- Login Tabs -->
+        <div class="flex border-b border-outline-variant/30 mb-8">
+            <button id="user-tab" onclick="switchTab('user')" class="flex-1 py-3 font-label-md text-sm uppercase tracking-widest tab-btn active transition-all">User</button>
+            <button id="admin-tab" onclick="switchTab('admin')" class="flex-1 py-3 font-label-md text-sm uppercase tracking-widest tab-btn text-on-surface-variant hover:text-on-surface transition-all">Admin</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="space-y-6" action="/login" method="POST">
+            <div>
+                <label class="block font-label-sm text-xs text-on-surface-variant uppercase mb-2">Identification (Username/Email)</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">person</span>
+                    <input type="text" name="username" placeholder="cadet@vidrut.edu" class="w-full bg-surface-container/50 border border-outline-variant/50 rounded-lg py-3 pl-10 pr-4 text-on-surface focus:outline-none focus:border-primary-fixed-dim focus:ring-1 focus:ring-primary-fixed-dim transition-all" required/>
+                </div>
+            </div>
+            <div>
+                <label class="block font-label-sm text-xs text-on-surface-variant uppercase mb-2">Security Clearance (Password)</label>
+                <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">lock</span>
+                    <input type="password" name="password" placeholder="••••••••" class="w-full bg-surface-container/50 border border-outline-variant/50 rounded-lg py-3 pl-10 pr-4 text-on-surface focus:outline-none focus:border-primary-fixed-dim focus:ring-1 focus:ring-primary-fixed-dim transition-all" required/>
+                </div>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" class="rounded border-outline-variant/50 bg-surface-container/50 text-primary-fixed-dim focus:ring-primary-fixed-dim focus:ring-offset-background"/>
+                    <span class="text-on-surface-variant font-body-md">Remember me</span>
+                </label>
+                <a href="#" class="text-primary-fixed-dim hover:underline font-label-sm">Forgot Password?</a>
+            </div>
+            <button type="submit" id="login-btn" class="w-full py-4 bg-primary-fixed-dim text-on-primary font-label-md text-sm rounded-lg active:scale-95 transition-transform command-glow mt-4 uppercase tracking-widest font-bold">
+                Initialize Uplink
+            </button>
+        </form>
+
+        <div class="mt-8 text-center" id="signup-prompt">
+            <p class="text-on-surface-variant text-sm font-body-md">Don't have clearance? <a href="#" class="text-primary-fixed-dim hover:underline font-label-md">Apply for Access</a></p>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/20 relative z-10 w-full mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-8 py-6 max-w-[1280px] mx-auto gap-4">
+<div class="flex flex-col gap-1 text-center md:text-left">
+<div class="font-label-md text-sm font-bold text-on-surface">Vidrut Drones</div>
+<div class="font-label-sm text-xs text-on-surface-variant">© 2025 Vidrut Drones. All rights reserved.</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary-fixed-dim cursor-pointer">language</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary-fixed-dim cursor-pointer">share</span>
+</div>
+</div>
+</footer>
+
+<script>
+    let currentMode = 'user';
+
+    function switchTab(mode) {
+        currentMode = mode;
+        const userTab = document.getElementById('user-tab');
+        const adminTab = document.getElementById('admin-tab');
+        const loginBtn = document.getElementById('login-btn');
+        const signupPrompt = document.getElementById('signup-prompt');
+
+        if (mode === 'user') {
+            userTab.classList.add('active');
+            userTab.classList.remove('text-on-surface-variant');
+            adminTab.classList.remove('active');
+            adminTab.classList.add('text-on-surface-variant');
+            loginBtn.textContent = 'Initialize Uplink';
+            loginBtn.className = 'w-full py-4 bg-primary-fixed-dim text-on-primary font-label-md text-sm rounded-lg active:scale-95 transition-transform command-glow mt-4 uppercase tracking-widest font-bold';
+            signupPrompt.style.display = 'block';
+        } else {
+            adminTab.classList.add('active');
+            adminTab.classList.remove('text-on-surface-variant');
+            userTab.classList.remove('active');
+            userTab.classList.add('text-on-surface-variant');
+            loginBtn.textContent = 'Authorize Override';
+            loginBtn.className = 'w-full py-4 bg-transparent border-2 border-primary-fixed-dim text-primary-fixed-dim font-label-md text-sm rounded-lg active:scale-95 transition-transform mt-4 uppercase tracking-widest font-bold hover:bg-primary-fixed-dim hover:text-on-primary';
+            signupPrompt.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>

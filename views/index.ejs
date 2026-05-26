@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Hanken+Grotesk:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#00daf3",
+                    "on-surface": "#dce4e5",
+                    "tertiary-container": "#c0d0f7",
+                    "on-error": "#690005",
+                    "surface-dim": "#0d1516",
+                    "primary-container": "#00e5ff",
+                    "inverse-surface": "#dce4e5",
+                    "error-container": "#93000a",
+                    "background": "#0d1516",
+                    "on-primary": "#00363d",
+                    "secondary-fixed-dim": "#b9c7e4",
+                    "surface": "#0d1516",
+                    "on-secondary-fixed": "#0d1c32",
+                    "on-surface-variant": "#bac9cc",
+                    "on-tertiary-container": "#49597a",
+                    "outline": "#849396",
+                    "primary": "#c3f5ff",
+                    "primary-fixed": "#9cf0ff",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#00626e",
+                    "on-tertiary": "#20304f",
+                    "tertiary": "#e6ecff",
+                    "on-secondary-container": "#abb9d6",
+                    "tertiary-fixed-dim": "#b6c6ed",
+                    "secondary-fixed": "#d6e3ff",
+                    "surface-variant": "#2e3638",
+                    "surface-container": "#192122",
+                    "surface-container-highest": "#2e3638",
+                    "on-tertiary-fixed": "#091b39",
+                    "on-secondary": "#233148",
+                    "surface-bright": "#333a3c",
+                    "outline-variant": "#3b494c",
+                    "secondary-container": "#3c4962",
+                    "inverse-primary": "#006875",
+                    "on-secondary-fixed-variant": "#39475f",
+                    "tertiary-fixed": "#d8e2ff",
+                    "inverse-on-surface": "#2a3233",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#004f58",
+                    "surface-container-lowest": "#080f11",
+                    "on-primary-fixed": "#001f24",
+                    "surface-container-high": "#242b2d",
+                    "on-tertiary-fixed-variant": "#374767",
+                    "secondary": "#b9c7e4",
+                    "surface-tint": "#00daf3",
+                    "surface-container-low": "#151d1e",
+                    "on-background": "#dce4e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-sm": ["JetBrains Mono"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "label-md": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(13, 21, 22, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 1px 1px 0px rgba(255, 255, 255, 0.05);
+        }
+        .glass-panel:hover {
+            backdrop-filter: blur(12px);
+            box-shadow: 0px 0px 15px rgba(0, 218, 243, 0.2);
+            border-color: rgba(0, 218, 243, 0.4);
+        }
+        .command-glow {
+            box-shadow: inset 0 0 10px rgba(0, 218, 243, 0.3), 0 0 20px rgba(0, 218, 243, 0.2);
+        }
+        .active-glow {
+            border-bottom: 2px solid #00daf3;
+            text-shadow: 0 0 8px rgba(0, 218, 243, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary-container selection:text-on-primary-container font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_0_20px_rgba(0,218,243,0.1)] docked full-width top-0 sticky z-50">
+<nav class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary-fixed-dim tracking-tighter">
+                Vidrut Courses
+            </div>
+<!-- Desktop Links -->
+<div class="hidden md:flex gap-gutter items-center">
+<a class="text-primary-fixed-dim border-b-2 border-primary-fixed-dim pb-1 font-label-md text-label-md" href="index.html">Dashboard</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="about.html">About Us</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="/catalog">Courses</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="verify.html">Certificates</a>
+<a class="text-on-surface-variant hover:text-on-surface transition-colors font-label-md text-label-md" href="#">Contact Us</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary-fixed-dim transition-colors" data-icon="notifications">notifications</button>
+<div class="hidden md:flex gap-3">
+<a href="/login" class="px-6 py-2 text-on-surface font-label-md text-label-md hover:bg-white/5 transition-all inline-block text-center">Login</a>
+<a href="/login" class="px-6 py-2 bg-primary-fixed-dim text-on-primary font-label-md text-label-md rounded-lg active:scale-95 transition-transform command-glow inline-block text-center">Sign Up</a>
+</div>
+</div>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="relative w-full h-[870px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" data-alt="A cinematic, high-detail wide shot of a futuristic stealth drone hovering over a dark, neon-lit aerospace hangar. The scene is bathed in deep black tones and electric blue atmospheric lighting, reflecting off metallic surfaces. Sharp blue laser lines and holographic telemetry data float around the drone. The aesthetic is ultra-professional, conveying high-end aerospace engineering and cutting-edge surveillance technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbvAucqnkJHFsoYPB1EvmaBsld8nM7VEz3GiSrK831xn_VcCTvp0W47MWi9HNKntpv25YqdUkW97N04BsiidR70vecOhkCO-6Fq-lfvHrKec1cApicjzqnyWtmnw09vInP1YgL5t2J3O4WmeHCTwbBWIedXJuZcUvQ-GJTtAIjl9DG8MRdudvDdoc2lFyLaGD2aXs1kOwU9O3ztw9V_CrVIPs1QmGpvPnfO_TdRJqaVJtXBgciTCEuqtv3c4fR6L9Zv4UZkntG2J5B"/>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 px-margin-desktop max-w-container-max mx-auto w-full">
+<div class="max-w-2xl">
+<div class="mb-6 flex items-center gap-3">
+<span class="w-12 h-[1px] bg-primary-fixed-dim"></span>
+<span class="font-label-md text-label-md text-primary-fixed-dim tracking-[0.2em] uppercase">Aerospace Academy</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface mb-6 leading-[1.1]">
+                    Master the Skies: <span class="text-primary-fixed-dim">From Imagination</span> To Elevation
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-lg">
+                    Join the vanguard of aerospace innovation. Learn to design, simulate, and deploy next-generation unmanned aerial systems from industry experts.
+                </p>
+<div class="flex gap-4">
+<button class="px-8 py-4 bg-primary-fixed-dim text-on-primary font-label-md text-label-md rounded-lg active:scale-95 transition-transform command-glow">Explore Syllabus</button>
+<button class="px-8 py-4 glass-panel text-on-surface font-label-md text-label-md rounded-lg active:scale-95 transition-transform">Watch Demo</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Learning Statistics -->
+<section class="relative z-20 -mt-16 px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="glass-panel p-8 flex items-center gap-6 rounded-xl">
+<div class="bg-primary-container/20 p-4 rounded-lg">
+<span class="material-symbols-outlined text-primary-fixed-dim text-4xl" data-icon="groups">groups</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">50+</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Team Members</p>
+</div>
+</div>
+<div class="glass-panel p-8 flex items-center gap-6 rounded-xl">
+<div class="bg-primary-container/20 p-4 rounded-lg">
+<span class="material-symbols-outlined text-primary-fixed-dim text-4xl" data-icon="school">school</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">4</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Courses</p>
+</div>
+</div>
+<div class="glass-panel p-8 flex items-center gap-6 rounded-xl">
+<div class="bg-primary-container/20 p-4 rounded-lg">
+<span class="material-symbols-outlined text-primary-fixed-dim text-4xl" data-icon="verified">verified</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">98%</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Success Rate</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Domain Cards -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Engineering Domains</h2>
+<p class="text-on-surface-variant max-w-md">Specialized pathways designed for professional aerospace development.</p>
+</div>
+<a class="text-primary-fixed-dim font-label-md text-label-md hover:underline flex items-center gap-2" href="#">
+                View All Domains <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="glass-panel p-8 rounded-xl group transition-all">
+<span class="material-symbols-outlined text-primary-fixed-dim text-3xl mb-6 block group-hover:scale-110 transition-transform" data-icon="layers">layers</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">CAD / CAM / CAE</h4>
+<p class="text-on-surface-variant font-body-md text-sm mb-6">Master precision structural design and simulation modeling.</p>
+<div class="w-full bg-outline-variant/30 h-1 rounded-full overflow-hidden">
+<div class="bg-primary-fixed-dim h-full w-[70%] shadow-[0_0_8px_#00daf3]"></div>
+</div>
+</div>
+<div class="glass-panel p-8 rounded-xl group transition-all">
+<span class="material-symbols-outlined text-primary-fixed-dim text-3xl mb-6 block group-hover:scale-110 transition-transform" data-icon="memory">memory</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Electronics &amp; Materials</h4>
+<p class="text-on-surface-variant font-body-md text-sm mb-6">Explore composite materials and avionics systems.</p>
+<div class="w-full bg-outline-variant/30 h-1 rounded-full overflow-hidden">
+<div class="bg-primary-fixed-dim h-full w-[45%] shadow-[0_0_8px_#00daf3]"></div>
+</div>
+</div>
+<div class="glass-panel p-8 rounded-xl group transition-all">
+<span class="material-symbols-outlined text-primary-fixed-dim text-3xl mb-6 block group-hover:scale-110 transition-transform" data-icon="air">air</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Aerodynamics &amp; Mechanics</h4>
+<p class="text-on-surface-variant font-body-md text-sm mb-6">The science of flight dynamics and propulsion physics.</p>
+<div class="w-full bg-outline-variant/30 h-1 rounded-full overflow-hidden">
+<div class="bg-primary-fixed-dim h-full w-[85%] shadow-[0_0_8px_#00daf3]"></div>
+</div>
+</div>
+<div class="glass-panel p-8 rounded-xl group transition-all">
+<span class="material-symbols-outlined text-primary-fixed-dim text-3xl mb-6 block group-hover:scale-110 transition-transform" data-icon="terminal">terminal</span>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-2">Programming</h4>
+<p class="text-on-surface-variant font-body-md text-sm mb-6">Autonomy algorithms and drone flight control software.</p>
+<div class="w-full bg-outline-variant/30 h-1 rounded-full overflow-hidden">
+<div class="bg-primary-fixed-dim h-full w-[60%] shadow-[0_0_8px_#00daf3]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Courses Grid -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12">Mission-Critical Training</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Course Card 1 -->
+<div class="glass-panel rounded-xl overflow-hidden group">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A top-down detailed shot of a drone circuit board being assembled with precision tools. The background is a dark engineering workspace with blue accent lighting. The image captures the intricate nature of drone avionics and internal electronics, emphasizing technical sophistication and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbAHxt-CCLbaf3j491i-LH62IJfq7HtdKxMIqTLLz8LlvoI9OOrrBXbxT_cMPW4qWGmyfnytho42-SHpPK88TgqOlukMlsJsPEu0RzperRRogD4jwTfrOR_qKqT9a5y3NYChaIqjjwt4QMdOLD-FJfQNTyIyevul7JHG6LVrMv2liN5YOvD51fg4kxfwX0rM0RXybHkXLuWNS8GlwYfO-s6iTwj95IWsmK2pBMWMq4nr8nOHb_5FirSe04tQ_l7XSSgW79axH_b5vm"/>
+<div class="absolute top-4 left-4 bg-primary-fixed-dim/90 backdrop-blur-md px-3 py-1 rounded text-on-primary font-label-sm text-[10px] uppercase">Intermediate</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h5 class="font-headline-md text-headline-md text-on-surface leading-tight">Hands on Electronics</h5>
+<span class="font-label-md text-label-md text-primary-fixed-dim">$199</span>
+</div>
+<div class="flex gap-4 mb-6">
+<span class="flex items-center gap-1 text-on-surface-variant font-label-sm text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span> 12 Weeks
+                            </span>
+<span class="flex items-center gap-1 text-on-surface-variant font-label-sm text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span> 4.9 (1.2k)
+                            </span>
+</div>
+<button class="w-full py-3 border border-primary-fixed-dim text-primary-fixed-dim hover:bg-primary-fixed-dim hover:text-on-primary transition-all font-label-md text-label-md rounded">Enroll Mission</button>
+</div>
+</div>
+<!-- Course Card 2 -->
+<div class="glass-panel rounded-xl overflow-hidden group">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A wide-angle landscape of a high-tech wind tunnel facility where a drone prototype is undergoing aerodynamic testing. White smoke trails illustrate the airflow over the drone wings. The lighting is cold and scientific, with dark shadows and bright highlights emphasizing the curves of the aerodynamic design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKWIJ07-W45PYx43WHRumSLXakxgbf7oTrY0PWtoBfM6lQDGJkmtKHvYU8_Zj67d46cR5BmAiizSqBBwJx1iC5pGt2M0voWiCig6TaykWGvCuq40FWUNtw2tbC3GutDmZkCVeaa4qkL4MhX0CuUm8vDQj-eIP1SI-DFs6jTM4Q-eW-3A0DGVOmO6nOEx0PFxpfOnqPiyXhwd9na1J1jFhOi9e6hH0-cPyTCk7PMbRVBvBOCVXLPLdUJbfkjtRqPlieJIfKHG_zXIxf"/>
+<div class="absolute top-4 left-4 bg-primary-fixed-dim/90 backdrop-blur-md px-3 py-1 rounded text-on-primary font-label-sm text-[10px] uppercase">Advanced</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h5 class="font-headline-md text-headline-md text-on-surface leading-tight">Advanced Research and report making</h5>
+<span class="font-label-md text-label-md text-primary-fixed-dim">$249</span>
+</div>
+<div class="flex gap-4 mb-6">
+<span class="flex items-center gap-1 text-on-surface-variant font-label-sm text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span> 16 Weeks
+                            </span>
+<span class="flex items-center gap-1 text-on-surface-variant font-label-sm text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span> 4.8 (850)
+                            </span>
+</div>
+<button class="w-full py-3 border border-primary-fixed-dim text-primary-fixed-dim hover:bg-primary-fixed-dim hover:text-on-primary transition-all font-label-md text-label-md rounded">Enroll Mission</button>
+</div>
+</div>
+<!-- Course Card 3 -->
+<div class="glass-panel rounded-xl overflow-hidden group">
+<div class="h-48 overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up of a 3D modeling software interface on a large monitor, displaying a complex drone frame design. The engineer's hands are visible using a professional 3D mouse. The scene is set in a dark, high-performance office environment with blue-tinted screen light illuminating the desk area." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb0Bd82YvnQuteWfOukVHL0dqsUSFaTAdETqkO43Z6PBhp3lJq4EXq2H1i9vX01KPNvs9pIRx7KVet4k_4-vHVT0qqVPOuo5XZnYK0iC4yD-klQ1K5SGAM2lot7pUWIovVpGU21_B-EgljxU0EiiZkq1tqGUVRL4n44bVz55DuCrq40AEiccqJaAY36ms4GNRZ-mV7qrGWtXUGwmcTUi41jrSoRdHSWPp586ER2mI8bnDjFYfvAXcViwmEZKzW182c2Mec0hRk-iRp"/>
+<div class="absolute top-4 left-4 bg-primary-fixed-dim/90 backdrop-blur-md px-3 py-1 rounded text-on-primary font-label-sm text-[10px] uppercase">Beginner</div>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<h5 class="font-headline-md text-headline-md text-on-surface leading-tight">Mastering CAD for Drone Frames</h5>
+<span class="font-label-md text-label-md text-primary-fixed-dim">$149</span>
+</div>
+<div class="flex gap-4 mb-6">
+<span class="flex items-center gap-1 text-on-surface-variant font-label-sm text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span> 8 Weeks
+                            </span>
+<span class="flex items-center gap-1 text-on-surface-variant font-label-sm text-xs">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span> 5.0 (2.4k)
+                            </span>
+</div>
+<button class="w-full py-3 border border-primary-fixed-dim text-primary-fixed-dim hover:bg-primary-fixed-dim hover:text-on-primary transition-all font-label-md text-label-md rounded">Enroll Mission</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials & Announcements Section -->
+<section class="py-24 px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+<!-- Testimonials -->
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12">Voices from the Field</h2>
+<div class="space-y-6">
+<div class="glass-panel p-8 rounded-xl border-l-4 border-l-primary-fixed-dim">
+<p class="font-body-lg text-on-surface italic mb-6">"Vidrut Courses bridged the gap between theoretical aerodynamics and practical UAV deployment. The precision of their curriculum is unmatched in the digital space."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged male aerospace engineer in a sleek, modern office. He is smiling slightly, exuding confidence and expertise. The lighting is clean and bright, with a blurred background of technical diagrams and aerospace hardware." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9k0jwVCcirh1VJYAKKiEqTKEX2nLZ1NTLtj-DursvZ8YfQBCvUtRzv1RoRh2L544aGEmfA3d0Xb2e2wzELWWyBnw1R72bUZdNx7jBynJ-keaQBy2dUZ9Ap64eQSZXMNm_4sMf-ijg7eKi0KumlheVcOmsVgsRML2e3qDArmeL3Otpvb_912cprtPzS124A8nzOuF-qnyftgjzcfzl4WadawC_CsxE6kxWRbCRlmpF5r1ud-oBxc2vdtB2UeeXtVcmGdJ-FLlV4yyM"/>
+</div>
+<div>
+<h6 class="font-label-md text-label-md text-on-surface">Pushpak Chanda</h6>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Founder</p>
+</div>
+</div>
+</div>
+<div class="glass-panel p-8 rounded-xl">
+<p class="font-body-lg text-on-surface italic mb-6">"The drone programming module is spectacular. I went from zero flight code to deploying autonomous obstacle avoidance in just three months."</p>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A headshot of a young professional woman in a tech-oriented environment. She has a smart, focused expression. The background features soft blue LED lighting and computer screens, creating a high-tech atmosphere consistent with a software developer or robotics engineer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyAB8dLma6D2X7k6jYkt74z9fSuSf9so_gGCtvCi4-KvOo6v8DduSkKEMCAJDV43BpjbLB3zws_UOVNDmlzi8o88GOlgkC7rVp-JMwxmqsHALJ-ZrJSJWL_S-1zAjg6cjNXYYIy8qUSQnO86BtUpAvowANUcIMcCn9EdN0xM1hsJlSaIUNaxfcSbCEeBZca2t8jld7GNLwAtoTfyBOS8KJEr2nAwjlx499qoyemoS_lbh9nCBAetJhPZ76QBsjYSkwbBidLyW4doLx"/>
+</div>
+<div>
+<h6 class="font-label-md text-label-md text-on-surface">Sarah J. Lin</h6>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Software Developer</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Latest Announcements -->
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-12">Telemetry &amp; Updates</h2>
+<div class="space-y-4">
+<div class="flex gap-6 group cursor-pointer border-b border-outline-variant/30 pb-6">
+<div class="flex flex-col items-center">
+<span class="font-label-md text-label-md text-primary-fixed-dim">OCT</span>
+<span class="font-headline-md text-headline-md text-on-surface">14</span>
+</div>
+<div>
+<h5 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors mb-1">Q4 Scholarship Program Open</h5>
+<p class="text-on-surface-variant text-sm">Applications are now being accepted for the 2024 Drone Engineering Fellowship.</p>
+</div>
+</div>
+<div class="flex gap-6 group cursor-pointer border-b border-outline-variant/30 pb-6">
+<div class="flex flex-col items-center">
+<span class="font-label-md text-label-md text-primary-fixed-dim">OCT</span>
+<span class="font-headline-md text-headline-md text-on-surface">02</span>
+</div>
+<div>
+<h5 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors mb-1">New Module: AI Pathfinding</h5>
+<p class="text-on-surface-variant text-sm">Update to the Programming domain featuring deep reinforcement learning.</p>
+</div>
+</div>
+<div class="flex gap-6 group cursor-pointer pb-6">
+<div class="flex flex-col items-center">
+<span class="font-label-md text-label-md text-primary-fixed-dim">SEP</span>
+<span class="font-headline-md text-headline-md text-on-surface">28</span>
+</div>
+<div>
+<h5 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary-fixed-dim transition-colors mb-1">Partnership with Aerospace Corp</h5>
+<p class="text-on-surface-variant text-sm">Direct internship pipelines established for top-tier graduates.</p>
+</div>
+</div>
+<button class="w-full mt-4 py-4 glass-panel text-on-surface-variant font-label-md text-label-md rounded flex justify-center items-center gap-2">
+                        View Command Log <span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 full-width bottom-0">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-8 max-w-container-max mx-auto gap-gutter">
+<div class="flex flex-col gap-2">
+<div class="font-label-md text-label-md font-bold text-on-surface">Vidrut Drones</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">© 2025 Vidrut Drones. All rights reserved.</div>
+</div>
+<div class="flex gap-gutter">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Research</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Partnerships</a>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary-fixed-dim cursor-pointer" data-icon="language">language</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary-fixed-dim cursor-pointer" data-icon="share">share</span>
+</div>
+</div>
+</footer>
+</body></html>

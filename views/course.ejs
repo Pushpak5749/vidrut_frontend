@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Course: <%= course.name %></title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Hanken+Grotesk:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed-dim": "#00daf3",
+            "on-surface": "#dce4e5",
+            "surface-dim": "#0d1516",
+            "background": "#0d1516",
+            "on-primary": "#00363d",
+            "surface-container": "#192122",
+            "surface-container-lowest": "#080f11",
+            "outline-variant": "#3b494c"
+          }
+        }
+      }
+    }
+</script>
+<style>
+    body { background-color: #0d1516; color: #dce4e5; font-family: 'Hanken Grotesk', sans-serif; }
+    .glass-card {
+        background: rgba(25, 33, 34, 0.6);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+</style>
+</head>
+<body class="flex flex-col min-h-screen">
+<!-- Navigation -->
+<header class="bg-[#0d1516]/80 backdrop-blur-xl w-full top-0 sticky z-50 border-b border-[#3b494c]/30">
+    <div class="flex justify-between items-center w-full px-8 py-4 max-w-[1280px] mx-auto">
+        <div class="font-[Montserrat] text-2xl font-bold text-[#00daf3] tracking-tighter">Vidrut Courses</div>
+        <nav class="hidden md:flex items-center gap-8">
+            <a class="text-sm text-[#bac9cc] hover:text-[#dce4e5]" href="/">Dashboard</a>
+            <a class="text-sm text-[#00daf3] border-b-2 border-[#00daf3] pb-1" href="/catalog">Courses</a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <a href="/logout" class="text-sm px-4 py-2 bg-[#192122] rounded hover:brightness-110">Logout</a>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-[1280px] mx-auto px-8 py-16 flex-grow w-full">
+    <a href="/catalog" class="text-[#00daf3] text-sm mb-8 inline-flex items-center gap-2 hover:underline">
+        <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Catalog
+    </a>
+    <h1 class="font-[Montserrat] text-4xl font-bold mb-4 text-[#00daf3]"><%= course.name %></h1>
+    <p class="text-lg text-[#bac9cc] mb-12">Access the materials and videos uploaded for this specific training module.</p>
+
+    <% if (materials.length === 0) { %>
+        <div class="glass-card p-12 text-center rounded-xl">
+            <span class="material-symbols-outlined text-6xl text-[#3b494c] mb-4">folder_off</span>
+            <h3 class="text-xl font-bold text-[#bac9cc]">No Materials Found</h3>
+            <p class="text-[#849396] mt-2">The administration hasn't uploaded any documents or videos to this course yet.</p>
+        </div>
+    <% } else { %>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <% materials.forEach(material => { %>
+                <div class="glass-card p-6 rounded-xl flex flex-col items-start hover:border-[#00daf3]/50 transition-colors">
+                    <span class="material-symbols-outlined text-4xl text-[#00daf3] mb-4">
+                        <%= material.type === 'video' ? 'movie' : 'description' %>
+                    </span>
+                    <h4 class="text-xl font-bold text-[#dce4e5] mb-2"><%= material.title %></h4>
+                    <span class="text-xs uppercase tracking-widest text-[#849396] mb-6 border border-[#3b494c] px-2 py-1 rounded"><%= material.type %></span>
+                    <a href="<%= material.file_path %>" target="_blank" class="mt-auto w-full text-center py-3 bg-[#00daf3]/10 text-[#00daf3] rounded font-bold hover:bg-[#00daf3] hover:text-[#00363d] transition-all">
+                        View Material
+                    </a>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+</main>
+
+<footer class="bg-[#080f11] border-t border-[#3b494c]/20 py-8">
+    <div class="max-w-[1280px] mx-auto px-8 flex justify-between items-center text-sm text-[#bac9cc]">
+        <div>© 2025 Vidrut Drones. All rights reserved.</div>
+    </div>
+</footer>
+</body>
+</html>

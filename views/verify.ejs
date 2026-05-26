@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Hanken+Grotesk:wght@400;500&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#00daf3",
+                    "on-surface": "#dce4e5",
+                    "tertiary-container": "#c0d0f7",
+                    "on-error": "#690005",
+                    "surface-dim": "#0d1516",
+                    "primary-container": "#00e5ff",
+                    "inverse-surface": "#dce4e5",
+                    "error-container": "#93000a",
+                    "background": "#0d1516",
+                    "on-primary": "#00363d",
+                    "secondary-fixed-dim": "#b9c7e4",
+                    "surface": "#0d1516",
+                    "on-secondary-fixed": "#0d1c32",
+                    "on-surface-variant": "#bac9cc",
+                    "on-tertiary-container": "#49597a",
+                    "outline": "#849396",
+                    "primary": "#c3f5ff",
+                    "primary-fixed": "#9cf0ff",
+                    "error": "#ffb4ab",
+                    "on-primary-container": "#00626e",
+                    "on-tertiary": "#20304f",
+                    "tertiary": "#e6ecff",
+                    "on-secondary-container": "#abb9d6",
+                    "tertiary-fixed-dim": "#b6c6ed",
+                    "secondary-fixed": "#d6e3ff",
+                    "surface-variant": "#2e3638",
+                    "surface-container": "#192122",
+                    "surface-container-highest": "#2e3638",
+                    "on-tertiary-fixed": "#091b39",
+                    "on-secondary": "#233148",
+                    "surface-bright": "#333a3c",
+                    "outline-variant": "#3b494c",
+                    "secondary-container": "#3c4962",
+                    "inverse-primary": "#006875",
+                    "on-secondary-fixed-variant": "#39475f",
+                    "tertiary-fixed": "#d8e2ff",
+                    "inverse-on-surface": "#2a3233",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#004f58",
+                    "surface-container-lowest": "#080f11",
+                    "on-primary-fixed": "#001f24",
+                    "surface-container-high": "#242b2d",
+                    "on-tertiary-fixed-variant": "#374767",
+                    "secondary": "#b9c7e4",
+                    "surface-tint": "#00daf3",
+                    "surface-container-low": "#151d1e",
+                    "on-background": "#dce4e5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "margin-mobile": "20px",
+                    "margin-desktop": "64px",
+                    "container-max": "1280px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-sm": ["JetBrains Mono"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "display-lg": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "label-md": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.08em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0d1516;
+            color: #dce4e5;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glass-panel {
+            background: rgba(13, 21, 22, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .certificate-border {
+            border: 2px solid #00daf3;
+            position: relative;
+        }
+        .certificate-border::before {
+            content: '';
+            position: absolute;
+            inset: 8px;
+            border: 1px solid rgba(0, 218, 243, 0.3);
+            pointer-events: none;
+        }
+        .neon-glow:hover {
+            box-shadow: 0px 0px 15px rgba(0, 218, 243, 0.3);
+        }
+        .input-underline {
+            border-bottom-width: 1px;
+            border-bottom-color: #849396;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+        .input-underline:focus {
+            border-bottom-color: #00daf3;
+            outline: none;
+            background: rgba(0, 218, 243, 0.05);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface/80 backdrop-blur-xl docked full-width top-0 sticky z-50 border-b border-outline-variant/30 shadow-[0_0_20px_rgba(0,218,243,0.1)]">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary-fixed-dim tracking-tighter">
+                Vidrut Courses
+            </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="index.html">Dashboard</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="about.html">About Us</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="/catalog">Courses</a>
+<a class="font-label-md text-label-md text-primary-fixed-dim border-b-2 border-primary-fixed-dim pb-1" href="verify.html">Certificates</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Contact Us</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary-fixed-dim transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="font-label-md text-label-md px-4 py-2 border border-primary-fixed-dim text-primary-fixed-dim rounded-lg hover:bg-primary-fixed-dim/10 transition-all active:scale-95">
+                    Login
+                </button>
+<button class="font-label-md text-label-md px-4 py-2 bg-primary-fixed-dim text-on-primary font-bold rounded-lg hover:brightness-110 transition-all active:scale-95 shadow-[0_0_15px_rgba(0,218,243,0.3)]">
+                    Sign Up
+                </button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 flex flex-col gap-12">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Course Completion</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-2">
+                    Official accreditation for the mastery of advanced aerospace systems and orbital mechanics.
+                </p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 font-label-md text-label-md px-6 py-3 border border-outline-variant bg-surface-container-low text-on-surface rounded-xl hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined" data-icon="print">print</span>
+                    Print
+                </button>
+<button class="flex items-center gap-2 font-label-md text-label-md px-6 py-3 bg-primary-fixed-dim text-on-primary font-bold rounded-xl hover:brightness-110 shadow-[0_0_20px_rgba(0,218,243,0.2)] transition-all">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                    Download PDF
+                </button>
+</div>
+</div>
+<!-- Main Layout: Bento Grid Style -->
+<% if (certificates.length === 0) { %>
+    <div class="glass-panel p-12 text-center rounded-xl my-8">
+        <span class="material-symbols-outlined text-6xl text-primary-fixed-dim mb-4">military_tech</span>
+        <h3 class="text-2xl font-bold text-on-surface">No Certificates Issued Yet</h3>
+        <p class="text-on-surface-variant mt-2">Complete your training modules and wait for the administration to upload your certificate.</p>
+    </div>
+<% } else { %>
+    <% certificates.forEach(cert => { %>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-16">
+            <!-- Certificate Preview (Left Column) -->
+            <div class="lg:col-span-8">
+                <div class="glass-panel rounded-xl overflow-hidden p-8 md:p-12 relative">
+                    <!-- Subtle Tech Background Pattern -->
+                    <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#00daf3 0.5px, transparent 0.5px); background-size: 20px 20px;"></div>
+                    
+                    <!-- The Official Certificate -->
+                    <div class="certificate-border bg-surface-container-lowest p-10 md:p-16 flex flex-col items-center text-center relative z-10">
+                        <div class="mb-8">
+                            <span class="material-symbols-outlined text-primary-fixed-dim !text-6xl" data-icon="military_tech">military_tech</span>
+                        </div>
+                        
+                        <div class="font-label-md text-label-md text-primary-fixed-dim tracking-[0.2em] mb-4">CERTIFICATE OF COMPLETION</div>
+                        
+                        <div class="font-body-md text-body-md text-on-surface-variant mb-10">This is to certify that</div>
+                        
+                        <div class="font-display-lg text-display-lg text-on-surface mb-8 border-b-2 border-outline-variant/30 pb-4 w-full max-w-md mx-auto">
+                            <%= user.username %>
+                        </div>
+                        
+                        <div class="font-body-md text-body-md text-on-surface-variant mb-12 max-w-lg mx-auto">
+                            has successfully fulfilled the rigorous requirements of the specialized technical program in
+                            <span class="text-primary-fixed-dim font-bold block mt-2 text-headline-md font-headline-md"><%= cert.title %></span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-12 w-full max-w-2xl mt-8">
+                            <div class="flex flex-col gap-2">
+                                <div class="font-label-sm text-label-sm text-on-surface-variant">COMPLETION DATE</div>
+                                <div class="font-label-md text-label-md text-on-surface"><%= new Date(cert.issue_date).toLocaleDateString() %></div>
+                                <div class="h-[1px] bg-outline-variant w-full"></div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <div class="font-label-sm text-label-sm text-on-surface-variant">CERTIFICATE ID</div>
+                                <div class="font-label-md text-label-md text-on-surface">VRC-<%= cert.id.toString().padStart(4, '0') %></div>
+                                <div class="h-[1px] bg-outline-variant w-full"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-16 flex justify-between w-full max-w-2xl opacity-80">
+                            <div class="text-left">
+                                <div class="font-label-md text-label-md text-on-surface italic mb-1">Dr. Pushpadant Jain</div>
+                                <div class="font-label-sm text-label-sm text-on-surface-variant">Faculty Coordinator</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-label-md text-label-md text-on-surface italic mb-1">Vidrut Aerospace Institute</div>
+                                <div class="font-label-sm text-label-sm text-on-surface-variant">Academic Director</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Corner Ornaments -->
+                        <div class="absolute top-0 left-0 p-4 border-t-2 border-l-2 border-primary-fixed-dim/20 w-8 h-8"></div>
+                        <div class="absolute top-0 right-0 p-4 border-t-2 border-r-2 border-primary-fixed-dim/20 w-8 h-8"></div>
+                        <div class="absolute bottom-0 left-0 p-4 border-b-2 border-l-2 border-primary-fixed-dim/20 w-8 h-8"></div>
+                        <div class="absolute bottom-0 right-0 p-4 border-b-2 border-r-2 border-primary-fixed-dim/20 w-8 h-8"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Verification & Details (Right Column) -->
+            <div class="lg:col-span-4 flex flex-col gap-8">
+                <!-- Action Section -->
+                <section class="glass-panel rounded-xl p-8 flex flex-col gap-6">
+                    <div>
+                        <h3 class="font-headline-md text-headline-md text-on-surface">Official Document</h3>
+                        <p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Download your official verified certificate.</p>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <a href="<%= cert.file_path %>" target="_blank" class="w-full text-center font-label-md text-label-md bg-primary-fixed-dim text-on-primary font-bold py-4 rounded-xl border border-outline-variant hover:brightness-110 transition-all shadow-[0_0_20px_rgba(0,218,243,0.2)]">
+                            Download Certificate File
+                        </a>
+                    </div>
+                </section>
+                
+                <!-- Detailed Info Chips -->
+                <section class="glass-panel rounded-xl p-8 flex flex-col gap-8">
+                    <h3 class="font-label-md text-label-md text-primary-fixed-dim tracking-widest uppercase">Telemetry Details</h3>
+                    <div class="flex flex-col gap-6">
+                        <div class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-primary-fixed-dim" data-icon="rocket_launch">rocket_launch</span>
+                            <div>
+                                <div class="font-label-sm text-label-sm text-on-surface-variant">COURSE TYPE</div>
+                                <div class="font-body-md text-body-md text-on-surface">Professional Masterclass</div>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="material-symbols-outlined text-primary-fixed-dim" data-icon="verified_user">verified_user</span>
+                            <div>
+                                <div class="font-label-sm text-label-sm text-on-surface-variant">BLOCKCHAIN HASH</div>
+                                <div class="font-label-sm text-label-sm text-on-surface break-all opacity-70">0x889...a4f92c10b...e923</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    <% }) %>
+<% } %>
+<!-- Featured Instructor / Course Image Card -->
+<div class="glass-panel rounded-xl overflow-hidden mt-12 grid grid-cols-1 md:grid-cols-3">
+<div class="h-64 md:h-full relative overflow-hidden">
+<img alt="Satellite orbit over earth" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="A high-tech digital render of a satellite orbiting the Earth at night, with intricate city lights visible on the surface below. The scene is bathed in a cool cyan and deep space black palette, with glowing data lines and telemetry overlays symbolizing advanced aerospace technology. The lighting is cinematic and focused, reflecting a futuristic, professional aerospace atmosphere consistent with an engineering education platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA0Elt-9kutDxLL_jeHe46gyo6L1oRU5xSJXFLYfFwKxOcX5AcF5eQcIRoeYk_7F87jMVsqSC12IlaFoihpbEbSA2L2tRx8n-TTuE-Elyv4q2ZDCp02Dlm_q0RmyraL9FxxGmEYq3uR_WOqEu5L02o16FbYPGSZpgKlv7fOeatvtfavnsEFTqO5Cw5-chtW0fR5d902v5Z24zGifFlpxieTuCUHlFIgPiAkeUSIJOoU0wSfoqIvSRfXbvBWwuvAY1ALVb-AJeD0_JJ"/>
+</div>
+<div class="md:col-span-2 p-10 flex flex-col justify-center gap-4">
+<span class="font-label-sm text-label-sm text-primary-fixed-dim tracking-[0.2em]">ALUMNI SPOTLIGHT</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Continue your trajectory.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                    "The Aerodynamics &amp; Mechanics program at Vidrut provided me with the technical foundation to lead orbital stabilization projects. The certification is recognized globally as a mark of excellence."
+                </p>
+<div class="flex items-center gap-4 mt-4">
+<button class="font-label-md text-label-md text-primary-fixed-dim hover:underline underline-offset-8">Explore Next Course: Propulsion Systems →</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-8 max-w-container-max mx-auto gap-gutter">
+<div class="font-label-md text-label-md font-bold text-on-surface">Vidrut Drones</div>
+<div class="flex gap-8">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Research</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary-fixed-dim transition-colors" href="#">Partnerships</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant">
+                © 2025 Vidrut Drones. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>
